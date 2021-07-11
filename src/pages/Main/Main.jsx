@@ -1,13 +1,42 @@
-import React from 'react';
-import { Message } from './components/Message';
-import { Layout } from 'components/Layout';
+import React, { useState } from 'react';
+import { TodoPlus } from 'components/TodoPlus';
+import { TodoList } from 'components/TodoList';
+import { TodoInit } from 'components/TodoInit';
 
-export const MainPage = () => {
+const App = () => {
+  const [list, setList] = useState([{ id: 0, text: '러닝뛰기' }]);
+  const [id, setId] = useState(1);
+
+  const createTodo = (text) => {
+    setList((list) => list.concat({ id: id, text }));
+    setId((id) => id + 1);
+  };
+  const removeTodo = (id) => {
+    setList((list) => list.filter((list) => list.id !== id));
+  };
+  const updateTodo = (id, text) => {
+    setList((list) =>
+      list.map((list) => {
+        if (list.id === id) {
+          return {
+            id,
+            text,
+          };
+        }
+        return list;
+      }),
+    );
+  };
+  const allRemoveTodo = () => {
+    setList([]);
+  };
   return (
-    <Layout>
-      <Message />
-    </Layout>
+    <div>
+      <TodoPlus createTodo={createTodo} />
+      <TodoInit list={list} allRemoveTodo={allRemoveTodo}></TodoInit>
+      <TodoList list={list} removeTodo={removeTodo} updateTodo={updateTodo} />
+    </div>
   );
 };
 
-export default MainPage;
+export default App;
