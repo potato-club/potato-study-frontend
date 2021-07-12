@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { CheckInit } from './CheckInit';
 
 export const TodoInit = ({ list, allRemoveTodo }) => {
-  const handleAllRemove = () => {
-    allRemoveTodo(list);
+  const [isRemove, setIsRemove] = useState(false);
+  const handleCheckRemove = (data) => {
+    //
+    setIsRemove(data);
   };
 
-  return <button onClick={handleAllRemove}>전체 삭제</button>;
+  return (
+    <div>
+      <button onClick={() => handleCheckRemove(true)}>전체 삭제</button>
+      {isRemove && (
+        <CheckInit
+          list={list}
+          allRemoveTodo={allRemoveTodo}
+          handleCheckRemove={handleCheckRemove}></CheckInit>
+      )}
+    </div>
+  );
 };

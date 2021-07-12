@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TodoPlus, TodoList, TodoInit } from './components/index';
-
+import { Layout } from 'components/Layout';
 const App = () => {
   const [list, setList] = useState([]);
   const [id, setId] = useState(1);
@@ -33,11 +33,11 @@ const App = () => {
   };
 
   return (
-    <div>
+    <Layout>
       <TodoPlus createTodo={createTodo} />
       <TodoInit list={list} allRemoveTodo={allRemoveTodo} />
       <TodoList list={list} removeTodo={removeTodo} updateTodo={updateTodo} />
-    </div>
+    </Layout>
   );
 };
 
