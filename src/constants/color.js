@@ -3,7 +3,7 @@ export const customColor = {
   sub: '#FFFFFF',
   deleteColor: '#FF5555',
   updateColor: '#DDDDDD',
-  addColor: '#40AFFF',
+  plusColor: '#40AFFF',
   boxColor: '#C4C4C4',
 
   mainFontColor: '#000000',

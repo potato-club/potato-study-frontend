@@ -47,7 +47,9 @@ const App = () => {
 };
 
 const Section = styled.div`
-  width: 80%;
+
+  position relative;
+  width: 100%;
   padding: 40px;
   text-align: center;
 

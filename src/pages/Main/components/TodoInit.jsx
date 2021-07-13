@@ -29,10 +29,11 @@ export const TodoInit = ({ list, allRemoveTodo }) => {
 const RemoveButton = styled.button`
   position: relative;
   border: 0;
-  width: 530px;
+  width: ${customSize.bigButtonWidth};
   height: ${customSize.miniButtonHeight};
   border-radius: ${customSize.boxBorderRadius};
-  font-Size: ${customSize.mainFontSize};
+  font-size: ${customSize.mainFontSize};
   background-color: ${customColor.deleteColor};
-  color: ${customColor.subFontColor}}
+  color: ${customColor.subFontColor};
+  cursor: pointer;
 `;
