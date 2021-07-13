@@ -7,22 +7,10 @@ export const TodoPlus = ({ createTodo }) => {
   const handleChange = (e) => {
     setTextInput(e.target.value);
   };
-  const handlePlus = () => {
+  const handlePlus = (e) => {
     if (textInput.length === 0) {
       setIsContext(false);
-      return;
-    }
-    createTodo(textInput);
-    setTextInput('');
-    setIsContext(true);
-    focusInputRef.current.focus();
-  };
-  const pressEnter = (e) => {
-    if (e.key === 'Enter') {
-      if (textInput.length === 0) {
-        setIsContext(false);
-        return;
-      }
+    } else {
       createTodo(textInput);
       setTextInput('');
       setIsContext(true);
@@ -36,7 +24,7 @@ export const TodoPlus = ({ createTodo }) => {
         placeholder={'aaa'}
         onChange={handleChange}
         ref={focusInputRef}
-        onKeyPress={(e) => pressEnter(e)}></input>
+        onKeyPress={(e) => e.key === 'Enter' && handlePlus(e)}></input>
       <button onClick={handlePlus}>추가</button>
       {!isContext && (
         <div>
