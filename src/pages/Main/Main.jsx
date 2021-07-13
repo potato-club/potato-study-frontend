@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TodoPlus, TodoList, TodoInit } from './components/index';
 import { Layout } from 'components/Layout';
 import styled from '@emotion/styled';
@@ -6,11 +6,11 @@ import { customColor } from 'constants/index';
 
 const App = () => {
   const [list, setList] = useState([]);
-  const [id, setId] = useState(1);
+  const setId = useRef(0);
 
   const createTodo = (text) => {
-    setList((list) => list.concat({ id: id, text }));
-    setId((id) => id + 1);
+    setList((list) => list.concat({ id: setId.current, text }));
+    setId.current += 1;
   };
 
   const removeTodo = (id) => {
