@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { customColor, customSize } from 'constants/index';
 
-export const TodoInfo = ({ list, removeTodo, updateTodo }) => {
+export const TodoInfo = ({ list, removeTodo, updateTodo, scrollRef }) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [changeText, setChangeText] = useState();
   //const focusUpdateRef = useRef();
@@ -24,7 +24,7 @@ export const TodoInfo = ({ list, removeTodo, updateTodo }) => {
     removeTodo(list.id);
   };
   return (
-    <SectionTodoInfo>
+    <SectionTodoInfo ref={scrollRef}>
       {isUpdate ? (
         <ContextUpdateBox
           value={changeText}
@@ -43,7 +43,6 @@ export const TodoInfo = ({ list, removeTodo, updateTodo }) => {
   );
 };
 const SectionTodoInfo = styled.li`
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,6 +52,7 @@ const SectionTodoInfo = styled.li`
 const ContextUpdateBox = styled.input`
   position: relative;
   display: flex;
+  padding: 0;
   justify-content: center;
   align-items: center;
   width: 420px;

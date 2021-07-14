@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { TodoPlus, TodoList, TodoInit } from './components/index';
 import { Layout } from 'components/Layout';
 import styled from '@emotion/styled';
@@ -7,6 +7,13 @@ import { customColor } from 'constants/index';
 const App = () => {
   const [list, setList] = useState([]);
   const setId = useRef(0);
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    scrollRef.current !== undefined &&
+      scrollRef.current !== null &&
+      scrollToBottom();
+  }, [list]);
 
   const createTodo = (text) => {
     setList((list) => list.concat({ id: setId.current, text }));
@@ -34,12 +41,21 @@ const App = () => {
   const allRemoveTodo = () => {
     setList([]);
   };
+  const scrollToBottom = () => {
+    console.log(scrollRef);
+    scrollRef.current.scrollIntoView();
+  };
 
   return (
     <Layout>
       <Section>
         <TodoInit list={list} allRemoveTodo={allRemoveTodo} />
-        <TodoList list={list} removeTodo={removeTodo} updateTodo={updateTodo} />
+        <TodoList
+          scrollRef={scrollRef}
+          list={list}
+          removeTodo={removeTodo}
+          updateTodo={updateTodo}
+        />
         <TodoPlus createTodo={createTodo} />
       </Section>
     </Layout>
