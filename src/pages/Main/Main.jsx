@@ -47,12 +47,11 @@ const App = () => {
 };
 
 const Section = styled.div`
-
   position relative;
-  width: 100%;
+  width: 60%;
+  height: 100%;
   padding: 40px;
   text-align: center;
-
   background-color: ${customColor.main};
 `;
 export default App;

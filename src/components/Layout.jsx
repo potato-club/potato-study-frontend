@@ -11,8 +11,8 @@ export const Layout = ({ children }) => {
 
 const Wrapper = styled.div`
   display: flex;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
 `;
 
 const Container = styled.div`
@@ -22,8 +22,7 @@ const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 1024px;
-  padding-top: 16px;
-  padding-bottom: 16px;
+
   padding-left: 32px;
   padding-right: 32px;
 `;

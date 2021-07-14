@@ -6,28 +6,32 @@ import { customColor, customSize } from 'constants/index';
 export const TodoInit = ({ list, allRemoveTodo }) => {
   const [isRemove, setIsRemove] = useState(false);
   const handleCheckRemove = (data) => {
-    //
     setIsRemove(data);
   };
 
   return (
-    <div>
-      {isRemove ? (
-        <CheckInit
-          list={list}
-          allRemoveTodo={allRemoveTodo}
-          handleCheckRemove={handleCheckRemove}></CheckInit>
-      ) : (
-        <RemoveButton onClick={() => handleCheckRemove(true)}>
-          전체 삭제
-        </RemoveButton>
-      )}
-    </div>
+    <SectionRemove>
+      <CheckInit
+        list={list}
+        isRemove={isRemove}
+        allRemoveTodo={allRemoveTodo}
+        handleCheckRemove={handleCheckRemove}></CheckInit>
+      <RemoveButton onClick={() => handleCheckRemove(true)}>
+        전체 삭제
+      </RemoveButton>
+    </SectionRemove>
   );
 };
-
+const SectionRemove = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const RemoveButton = styled.button`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0;
   width: ${customSize.bigButtonWidth};
   height: ${customSize.miniButtonHeight};

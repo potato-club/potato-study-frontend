@@ -1,8 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { customColor, customSize } from 'constants/index';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
-export const CheckInit = ({ list, allRemoveTodo, handleCheckRemove }) => {
+export const CheckInit = ({
+  isRemove,
+  list,
+  allRemoveTodo,
+  handleCheckRemove,
+}) => {
   const CheckRemove = (e) => {
     if (e.target.name === 'yes') {
       allRemoveTodo(list);
@@ -12,42 +19,52 @@ export const CheckInit = ({ list, allRemoveTodo, handleCheckRemove }) => {
     }
   };
   return (
-    <div>
-      <CheckRemoveBox>
-        <CheckRemoveBoxContext>
-          정말 전부 삭제하시겠습니까?
-        </CheckRemoveBoxContext>
-        <CheckRemoveButtonBox>
-          <WaitButton onClick={CheckRemove} name="no">
-            잠깐...!
-          </WaitButton>
-          <RemoveButton onClick={CheckRemove} name="yes">
-            두번 말하지 않겠다.
-          </RemoveButton>
-        </CheckRemoveButtonBox>
-      </CheckRemoveBox>
-    </div>
+    <Modal isOpen={isRemove} style={styledRemoveModal}>
+      <CheckRemoveBoxContext>정말 전부 삭제하시겠습니까?</CheckRemoveBoxContext>
+      <CheckRemoveButtonBox>
+        <WaitButton onClick={CheckRemove} name="no">
+          잠깐...!
+        </WaitButton>
+        <RemoveButton onClick={CheckRemove} name="yes">
+          두번 말하지 않겠다.
+        </RemoveButton>
+      </CheckRemoveButtonBox>
+    </Modal>
   );
 };
-const CheckRemoveBox = styled.div`
-  margin: auto;
 
-  background-color: ${customColor.boxColor};
-  border-radius: ${customSize.boxBorderRadius};
-  width: ${customSize.bigButtonWidth};
-  height: 100px;
+const styledRemoveModal = {
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    top: '10%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    transform: 'translate(-50%, -50%)',
+    padding: '0',
+    alignItems: 'center',
+    borderRadius: customSize.boxBorderRadius,
+    backgroundColor: customColor.boxColor,
+  },
+};
+
+const CheckRemoveBoxContext = styled.p`
+  position: relative;
+  margin: 0;
+  line-height: 100px;
+  font-size: ${customSize.mainFontSize};
 `;
 const CheckRemoveButtonBox = styled.div`
+  position: relative;
   display: flex;
-`;
-const CheckRemoveBoxContext = styled.p`
-  margin: 0;
-  font-size: ${customSize.mainFontSize};
+  justify-content: center;
+  align-items: center;
 `;
 const WaitButton = styled.button`
   position: relative;
   border: 0;
-  width: 530px;
+  width: 300px;
   height: ${customSize.miniButtonHeight};
   border-bottom-left-radius: ${customSize.boxBorderRadius};
   font-size: ${customSize.mainFontSize};
@@ -58,7 +75,7 @@ const WaitButton = styled.button`
 const RemoveButton = styled.button`
   position: relative;
   border: 0;
-  width: 530px;
+  width: 300px;
   height: ${customSize.miniButtonHeight};
   border-bottom-right-radius: ${customSize.boxBorderRadius};
   font-size: ${customSize.mainFontSize};
