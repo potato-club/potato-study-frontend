@@ -1,23 +1,35 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import { ModifyModal } from '../../../components';
 
 export const TodoListItem = ({ text, id, deleteTodo }) => {
+  const [itemText, setItemText] = useState(text);
   const item = useRef();
   useEffect(() => {
     item.current.scrollIntoView({
       behavior: 'smooth',
     });
   }, [id]);
+
+  const [modifyed, setModifyed] = useState(false);
+
+  const closeModifyModal = () => {
+    setModifyed(false);
+  };
+
   return (
     <Item ref={item}>
-      {text}
+      <TextBox value={itemText} onChange={(e) => setItemText(e.target.value)} />
       <ButtonBox>
-        <ChageTextButton>수정</ChageTextButton>
+        <ChageTextButton onClick={() => setModifyed(true)}>
+          수정
+        </ChageTextButton>
         <DeleteButton onClick={() => deleteTodo(id)}>
           <RiDeleteBin5Line />{' '}
         </DeleteButton>
       </ButtonBox>
+      <ModifyModal modifyed={modifyed} closeModifyModal={closeModifyModal} />
     </Item>
   );
 };
@@ -29,6 +41,17 @@ const Item = styled.li`
   padding-left: 16px;
   margin-bottom: 16px;
   height: 40px;
+`;
+const TextBox = styled.input`
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  width: 840px;
+  &:focus {
+    border: none;
+    outline: none;
+    border-bottom: 5px solid green;
+  }
 `;
 const ButtonBox = styled.div`
   display: flex;

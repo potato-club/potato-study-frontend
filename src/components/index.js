@@ -2,3 +2,4 @@
 
 export { Layout } from './Layout';
 export { EmptyTextModal } from './EmptyTextModal';
+export { ModifyModal } from './ModifyModal';
