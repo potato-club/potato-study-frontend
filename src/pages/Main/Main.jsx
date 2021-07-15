@@ -36,6 +36,8 @@ const TodoMian = () => {
   }
 
   const changeTodo = (id, text) => {
+    console.log(id);
+    console.log(text);
     setTodo((todos) =>
       todos.map((todo) => {
         if (todo.id === id) {

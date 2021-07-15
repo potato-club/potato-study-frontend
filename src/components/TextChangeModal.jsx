@@ -7,27 +7,40 @@ const customStyles = {
     top: '50%',
     left: '50%',
     width: '400px',
-    height: '176px',
+    height: '288px',
     transform: 'translate(-50%, -50%)',
   },
+
 };
 
 Modal.setAppElement('#root');
 
-export const InputEmptyModal = ({ isOpen, close }) => (
+export const TextChangeModal = ({ isOpen, close, changeText }) => (
+
   <Modal
     isOpen={isOpen}
     onRequestClose={close}
     style={customStyles}
     contentLabel="Example Modal">
-    <ContentBox>텍스트를 입력하세요.</ContentBox>
-    <CloseButton onClick={close}>닫기</CloseButton>
+    <Wrapper>
+      <Title>텍스트 수정</Title>
+      <TextChangeInputBox onChange={(e) => changeText = e.target.value} />
+      <CloseButton onClick={() => close(changeText)}>수정</CloseButton>
+    </Wrapper>
   </Modal>
+
 );
 
-const ContentBox = styled.p`
-  font-size: 32px;
+const Wrapper = styled.div`
   text-align: center;
+  margin: auto;
+`
+
+const Title = styled.p`
+  font-size: 32px;
+`
+const TextChangeInputBox = styled.input`
+  font-size: 32px;
 `;
 const CloseButton = styled.button`
   font-size: 32px;

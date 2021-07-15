@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { TextChangeModal } from '../../../components'
 
 export const TodoList = ({ id, text, deleteTodo, changeTodo }) => {
-  const [changeText, setChangeText] = useState('')
+  const [textChangeModal, setTextChangeModal] = useState(false);
+  const textChange = '';
+
+  const closeTextChangeModal = (changeText) => {
+    changeTodo(id, changeText);
+    setTextChangeModal(false);
+  }
 
   return (
     <ContentBox>
       {text}
       <DeleteTodoButton onClick={() => deleteTodo(id)} >삭제</DeleteTodoButton>
-      <input onChange={(e) => setChangeText(e.target.value)} />
-      <ChageTodoButon onClick={() => changeTodo(id, changeText)}>수정</ChageTodoButon>
+      <ChageTodoButon onClick={() => setTextChangeModal(true)}>수정</ChageTodoButon>
+      <TextChangeModal isOpen={textChangeModal} close={closeTextChangeModal} textChange={textChange} />
     </ContentBox>
   )
 }
@@ -24,7 +31,7 @@ const ContentBox = styled.div`
   margin-top: 16px;
 `
 
-const DeleteTodoButton =styled.button`
+const DeleteTodoButton = styled.button`
   float: right;
   height: 80%;
 `
