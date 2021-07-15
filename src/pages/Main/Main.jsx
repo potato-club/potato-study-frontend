@@ -6,7 +6,7 @@ import { InputEmptyModal } from '../../components'
 
 const TodoMian = () => {
   const [todo, setTodo] = useState([])
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const nextId = useRef(0);
   const [inputEmptyModalIsOpen, setInputEmptyModalIsOpen] = useState(false);
 

@@ -16,12 +16,11 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export const TextChangeModal = ({ isOpen, close, changeText }) => (
-
   <Modal
     isOpen={isOpen}
     onRequestClose={close}
     style={customStyles}
-    contentLabel="Example Modal">
+    contentLabel='Example Modal'>
     <Wrapper>
       <Title>텍스트 수정</Title>
       <TextChangeInputBox onChange={(e) => changeText = e.target.value} />
