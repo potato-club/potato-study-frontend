@@ -1,19 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { TodoBoard } from './components';
+import { InputEmptyModal } from '../../components'
 
 
 const TodoMian = () => {
   const [todo, setTodo] = useState([])
   const [inputValue, setInputValue] = useState("");
   const nextId = useRef(0);
+  const [inputEmptyModalIsOpen, setInputEmptyModalIsOpen] = useState(false);
 
-  useEffect(() => {
-    nextId.current += 1;
-  }, [todo])
+  useEffect(() => { }, [todo])
 
   const handleChangeInput = (e) => {
-    setInputValue(e.target.value);
+    setInputValue(e.target.value.trim());
+  }
+
+  const addTodo = () => {
+    if (inputValue !== '') {
+      setTodo([
+        ...todo,
+        {
+          id: nextId.current,
+          text: inputValue
+        }
+      ])
+      nextId.current += 1;
+    } else {
+      openInputEmptyModal();
+    }
   }
 
   const deleteTodo = (id) => {
@@ -34,18 +49,26 @@ const TodoMian = () => {
     );
   }
 
+  const openInputEmptyModal = () => {
+    setInputEmptyModalIsOpen(true);
+  }
+
+  const cloaseInputEmptyModal = () => {
+    setInputEmptyModalIsOpen(false);
+  }
 
   return (
     <Wrapper>
       <Title>TodoList</Title>
       <ResetButton onClick={() => { setTodo([]); nextId.current = 0; }}>초기화</ResetButton>
       <InputBox placeholder="할일을 입력해주세요" onChange={handleChangeInput} />
-      <InputButton onClick={() => setTodo([...todo, { id: nextId.current, text: inputValue }])}>저장</InputButton>
+      <InputButton onClick={addTodo}>저장</InputButton>
       <TodoBoard
         todo={todo}
         deleteTodo={deleteTodo}
         changeTodo={changeTodo}
       />
+      <InputEmptyModal isOpen={inputEmptyModalIsOpen} close={cloaseInputEmptyModal} />
     </Wrapper>
   );
 };
