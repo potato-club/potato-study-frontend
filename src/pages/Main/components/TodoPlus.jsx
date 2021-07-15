@@ -32,7 +32,7 @@ export const TodoPlus = ({ createTodo }) => {
         <CheckContexBoxContext>내용을 입력해주세요.</CheckContexBoxContext>
         <OkButton onClick={() => activeModal(false)}>확인</OkButton>
       </Modal>
-      <InputBox>
+      <PlusBox>
         <ContextInputBox
           value={textInput}
           placeholder={'내용을 입력'}
@@ -42,7 +42,7 @@ export const TodoPlus = ({ createTodo }) => {
             e.key === 'Enter' && handlePlus(e)
           }></ContextInputBox>
         <PlusButton onClick={handlePlus}>추가</PlusButton>
-      </InputBox>
+      </PlusBox>
     </div>
   );
 };
@@ -78,7 +78,7 @@ const OkButton = styled.button`
 `;
 
 //============ Input Box ===================//
-const InputBox = styled.div`
+const PlusBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

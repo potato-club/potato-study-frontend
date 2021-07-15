@@ -42,8 +42,9 @@ const App = () => {
     setList([]);
   };
   const scrollToBottom = () => {
-    console.log(scrollRef);
-    scrollRef.current.scrollIntoView();
+    scrollRef.current.scrollIntoView({
+      behavior: 'smooth',
+    });
   };
 
   return (

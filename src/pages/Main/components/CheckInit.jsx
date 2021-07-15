@@ -37,7 +37,7 @@ const styledRemoveModal = {
   content: {
     display: 'flex',
     flexDirection: 'column',
-    top: '10%',
+    top: '50%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
@@ -64,7 +64,7 @@ const CheckRemoveButtonBox = styled.div`
 const WaitButton = styled.button`
   position: relative;
   border: 0;
-  width: 300px;
+  width: 240px;
   height: ${customSize.miniButtonHeight};
   border-bottom-left-radius: ${customSize.boxBorderRadius};
   font-size: ${customSize.mainFontSize};
@@ -75,7 +75,7 @@ const WaitButton = styled.button`
 const RemoveButton = styled.button`
   position: relative;
   border: 0;
-  width: 300px;
+  width: 240px;
   height: ${customSize.miniButtonHeight};
   border-bottom-right-radius: ${customSize.boxBorderRadius};
   font-size: ${customSize.mainFontSize};

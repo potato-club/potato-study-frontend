@@ -17,20 +17,16 @@ export const TodoList = ({ list, removeTodo, updateTodo, scrollRef }) => {
   );
 };
 
-const SectionTodoList = styled.ul`
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 20px auto;
-  padding: 0;
-  flex-direction: column;
-  overflow-y: auto;
-  align-items: left;
-  list-style: none;
-  width: 600px;
-  height: 710px;
-
-  -ms-overflow-style: none; 
-  &::-webkit-scrollbar { 
-    display: none !important;
+const SectionTodoList = styled.ul`  
+position: relative;
+display: flex;
+margin: 20px auto;
+padding: 0;
+flex-direction: column;
+overflow-y: auto;
+list-style: none;
+height: 710px;
+-ms-overflow-style: none; 
+&::-webkit-scrollbar { 
+  display: none !important;
 `;
