@@ -1,12 +1,21 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { TodoListBox } from './components';
+import { EmptyTextModal } from '../../components';
 
 const TodoList = () => {
   const focusing = useRef();
   const [text, setText] = useState('');
   const nextId = useRef(0);
   const [todos, setTodos] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   const pressEnter = (e) => {
     if (e.key === 'Enter') {
       addTodo(text);
@@ -14,6 +23,7 @@ const TodoList = () => {
   };
   const addTodo = (text) => {
     if (text.length === 0) {
+      openModal();
       return;
     }
     const newTodo = {
@@ -55,6 +65,7 @@ const TodoList = () => {
         />
         <AddButton onClick={() => addTodo(text)}>추가</AddButton>
       </Footer>
+      <EmptyTextModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </Wrapper>
   );
 };
