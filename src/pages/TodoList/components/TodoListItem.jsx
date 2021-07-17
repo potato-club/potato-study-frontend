@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { RiDeleteBin5Line } from 'react-icons/ri';
-import { ModifyModal } from '../../../components';
+import { TextModal } from 'components/index';
 
 export const TodoListItem = ({ text, id, deleteTodo }) => {
   const [itemText, setItemText] = useState(text);
@@ -29,7 +29,12 @@ export const TodoListItem = ({ text, id, deleteTodo }) => {
           <RiDeleteBin5Line />{' '}
         </DeleteButton>
       </ButtonBox>
-      <ModifyModal modifyed={modifyed} closeModifyModal={closeModifyModal} />
+      <TextModal
+        modalIsOpen={modifyed}
+        closeModal={closeModifyModal}
+        titleText={'수정 완료'}
+        content={'수정이 완료되었습니다.'}
+      />
     </Item>
   );
 };

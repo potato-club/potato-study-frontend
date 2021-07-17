@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { TodoListBox } from './components';
-import { EmptyTextModal } from '../../components';
+import { TextModal } from 'components/index';
+import { customColor } from 'constants/index';
 
 const TodoList = () => {
   const focusing = useRef();
@@ -27,11 +28,12 @@ const TodoList = () => {
       return;
     }
     const newTodo = {
-      text: text,
+      text,
       id: nextId.current,
     };
     nextId.current += 1;
-    setTodos(todos.concat(newTodo));
+    // setTodos(todos.concat(newTodo));
+    setTodos((cur) => [...cur, newTodo]);
     setText('');
     focusing.current.focus();
   };
@@ -65,7 +67,12 @@ const TodoList = () => {
         />
         <AddButton onClick={() => addTodo(text)}>추가</AddButton>
       </Footer>
-      <EmptyTextModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <TextModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        titleText={'주의'}
+        content={'할일을 입력하고 추가 버튼을 누르세요'}
+      />
     </Wrapper>
   );
 };
@@ -88,7 +95,7 @@ const Header = styled.div`
   width: 100%;
   height: 52px;
   color: white;
-  background: #00701a;
+  background: ${customColor.green};
   font-size: 24px;
   font-weight: bold;
   border-radius: 64px 64px 0 0;
@@ -127,7 +134,7 @@ const AddButton = styled.button`
   font-size: 28px;
   cursor: pointer;
   border: none;
-  background: #00701a;
+  background: ${customColor.green};
   user-select: none;
   &:hover {
     color: yellow;

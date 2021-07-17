@@ -6,7 +6,7 @@ export const TodoListBox = ({ deleteTodo, todos }) => {
   return (
     <List>
       {todos.map(({ text, id }) => (
-        <TodoListItem text={text} id={id} deleteTodo={deleteTodo} />
+        <TodoListItem text={text} id={id} key={id} deleteTodo={deleteTodo} />
       ))}
     </List>
   );

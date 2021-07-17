@@ -14,14 +14,10 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-export const EmptyTextModal = ({ modalIsOpen, closeModal }) => (
-  <Modal
-    isOpen={modalIsOpen}
-    onRequestClose={closeModal}
-    style={customStyles}
-    contentLabel="Example Modal">
-    <Title>주의</Title>
-    <ContentBox>할일을 입력하고 추가 버튼을 누르세요</ContentBox>
+export const TextModal = ({ modalIsOpen, closeModal, titleText, content }) => (
+  <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
+    <Title>{titleText}</Title>
+    <ContentBox>{content}</ContentBox>
     <CloseButton onClick={closeModal}>닫기</CloseButton>
   </Modal>
 );
